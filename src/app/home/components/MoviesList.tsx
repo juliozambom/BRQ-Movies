@@ -1,9 +1,9 @@
 import { DiscoverMoviesService, DiscoverMoviesServiceOutput } from "@/src/shared/services/movies-db/movies";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Text } from "react-native";
-import { MovieListItem } from "./MovieListItem";
+import { MovieListItem } from "./MoviesListItem";
 
-export const MovieList = () => {
+export const MoviesList = () => {
     const [data, setData] = useState<DiscoverMoviesServiceOutput | null>(null);
     const [page, setPage] = useState<number>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);

@@ -1,5 +1,6 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { MovieList } from "./MovieList";
+import { MoviesList } from "./MoviesList";
+import { FavoriteMoviesList } from "./FavoriteMoviesList ";
 
 const MyTabs = createMaterialTopTabNavigator();
 
@@ -25,8 +26,8 @@ export const HomeTabs = () => {
                 tabBarInactiveTintColor: '#A9A9A9',
             }}
         >
-            <MyTabs.Screen name="Todos os Filmes" component={MovieList} />
-            <MyTabs.Screen name="Filmes Favoritos" component={MovieList} />
+            <MyTabs.Screen name="Todos os Filmes" component={MoviesList} />
+            <MyTabs.Screen name="Filmes Favoritos" component={FavoriteMoviesList} />
         </MyTabs.Navigator>
     )
 }

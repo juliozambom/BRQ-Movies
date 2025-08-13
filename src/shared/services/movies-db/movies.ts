@@ -29,6 +29,7 @@ export interface DiscoverMoviesServiceOutput {
 export const DiscoverMoviesService = async ({ page }: DiscoverMoviesServiceInput): Promise<DiscoverMoviesServiceOutput> => {
     const queryParams = new URLSearchParams();
     queryParams.append('page', page.toString());
+    queryParams.append('language', 'pt-BR');
 
     const { data } = await moviesDbApi.get('discover/movie', {
         params: queryParams
