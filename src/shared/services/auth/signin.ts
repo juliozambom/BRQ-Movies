@@ -24,12 +24,8 @@ export const SignInService = async (input: SignInServiceInput): Promise<SignInSe
 
     const user = users.find((u) => u.username == input.username);
 
-    if (!user) {
-        throw new Error('Usuário não encontrado');
-    }
-
-    if (user.password !== input.password) {
-        throw new Error('Senha incorreta');
+    if (!user || user.password !== input.password) {
+        throw new Error('Usuário ou senha inválidos');
     }
 
     return {
