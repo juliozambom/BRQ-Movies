@@ -23,7 +23,7 @@ export const TextField = ({ icon, ...rest }: TextFieldProps) => {
     }
 
     return (
-        <TouchableOpacity activeOpacity={1} onPress={focusField} className="w-full relative justify-center">
+        <TouchableOpacity activeOpacity={1} onPress={focusField} className={clsx("w-full relative justify-center", rest?.className)}>
             <TextInput
                 ref={textFieldRef}
                 onChange={(e) => {
@@ -31,12 +31,11 @@ export const TextField = ({ icon, ...rest }: TextFieldProps) => {
                 }}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
+                {...rest}
+                placeholder={undefined}
                 className={clsx("border-b text-base border-secondary px-4 leading-tight min-h-16 pt-2 bg-tertiary text-secondary", {
                     'pl-14': !!icon
                 })}
-
-                {...rest}
-                placeholder={undefined}
             />
 
             <View className="absolute left-4 flex-row gap-2 items-center">
