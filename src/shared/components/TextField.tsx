@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import { Text, TextInput, TextInputProps, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import { Text, TextInput, TextInputProps, TouchableOpacity, View } from "react-native";
 import { TrailingIcon } from "../assets/icons/TrailingIcon";
 
 interface TextFieldProps extends TextInputProps {
