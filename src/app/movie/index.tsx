@@ -1,5 +1,5 @@
 import { FlatList, ImageBackground, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { IMAGE_MOVIES_DB_BASE_URL } from "@/src/shared/services/urls";
+import { IMAGE_MOVIES_DB_BASE_URL } from "@/src/shared/services/api/urls";
 import { router, useLocalSearchParams } from "expo-router";
 import { Heart } from "@/src/shared/assets/icons/Heart";
 import { Star } from "@/src/shared/assets/icons/Star";

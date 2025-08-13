@@ -1,5 +1,5 @@
-import { DiscoverMoviesServiceOutput } from "@/src/shared/services/movies-db/movies"
-import { IMAGE_MOVIES_DB_BASE_URL } from "@/src/shared/services/urls"
+import { DiscoverMoviesServiceOutput } from "@/src/shared/services/api/movies-db/movies"
+import { IMAGE_MOVIES_DB_BASE_URL } from "@/src/shared/services/api/urls"
 import { router } from "expo-router"
 import { Image, TouchableOpacity } from "react-native"
 

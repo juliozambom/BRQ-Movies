@@ -1,4 +1,4 @@
-import { DiscoverMoviesService, DiscoverMoviesServiceOutput } from "@/src/shared/services/movies-db/movies";
+import { DiscoverMoviesService, DiscoverMoviesServiceOutput } from "@/src/shared/services/api/movies-db/movies";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Text } from "react-native";
 import { MovieListItem } from "./MoviesListItem";
