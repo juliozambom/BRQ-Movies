@@ -3,13 +3,22 @@ import { Profile } from "@/src/shared/assets/icons/Profile"
 import { TextField } from "@/src/shared/components/TextField"
 import { Button } from "@/src/shared/components/Button"
 import { Text, TouchableOpacity } from "react-native"
+import { useState } from "react"
 
 export const SignInForm = () => {
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const isButtonDisabled = username === '' || password === '';
+
     return (
         <>
             <TextField
                 icon={<Profile size={20} />}
                 placeholder="Usuário"
+                value={username}
+                onChangeText={setUsername}
             />
 
             <TextField
@@ -17,11 +26,14 @@ export const SignInForm = () => {
                 placeholder="Senha"
                 secureTextEntry
                 className="mt-12"
+                value={password}
+                onChangeText={setPassword}
             />
 
             <Button
                 title="Entrar"
                 className="mt-12"
+                disabled={isButtonDisabled}
             />
 
             <TouchableOpacity
