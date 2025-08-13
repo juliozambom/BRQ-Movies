@@ -4,7 +4,7 @@ import { Text, TextInput, TextInputProps, TouchableOpacity, TouchableWithoutFeed
 import { TrailingIcon } from "../assets/icons/TrailingIcon";
 
 interface TextFieldProps extends TextInputProps {
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
 }
 
 export const TextField = ({ icon, ...rest }: TextFieldProps) => {
@@ -14,6 +14,7 @@ export const TextField = ({ icon, ...rest }: TextFieldProps) => {
 
     function clearField() {
         textFieldRef.current?.clear();
+        rest.onChangeText && rest.onChangeText('')
         setValue('')
     }
 
@@ -45,7 +46,7 @@ export const TextField = ({ icon, ...rest }: TextFieldProps) => {
 
                 {rest?.placeholder && (
                     <Text className={clsx("text-secondary absolute", {
-                        'left-4': !icon,
+                        'left-0': !icon,
                         'left-10': !!icon,
                         '-top-1 text-xs': (value && value !== '') || isFocused
                     })}>{rest.placeholder}</Text>

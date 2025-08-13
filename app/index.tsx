@@ -1,5 +1,7 @@
 import { Text, View } from "react-native";
 import { TextField } from "./shared/components/TextField";
+import { Profile } from "./shared/assets/icons/Profile";
+import { Lock } from "./shared/assets/icons/Lock";
 
 export default function Index() {
   return (
@@ -7,13 +9,14 @@ export default function Index() {
       className="items-center justify-center flex-1 bg-background"
     >
       <TextField
-        icon={<Text>👋</Text>}
+        icon={<Profile size={20} />}
         placeholder="Usuário"
       />
 
       <TextField
-        icon={<Text>👋</Text>}
-        placeholder="Usuário"
+        icon={<Lock size={20} />}
+        placeholder="Senha"
+        secureTextEntry
       />
     </View>
   );
