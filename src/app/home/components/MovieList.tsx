@@ -51,8 +51,9 @@ export const MovieList = () => {
             data={data?.results}
             numColumns={2}
             showsVerticalScrollIndicator={false}
-            contentContainerClassName="gap-4 pb-16"
+            contentContainerClassName="gap-4 pb-16 px-4"
             columnWrapperClassName="flex-row justify-between"
+            className="border-t-2 border-tertiary pt-4"
             onEndReached={loadMore}
             keyExtractor={(item) => item.id.toString()}
             ListFooterComponent={() => {
