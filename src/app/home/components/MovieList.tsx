@@ -1,6 +1,6 @@
 import { DiscoverMoviesService, DiscoverMoviesServiceOutput } from "@/src/shared/services/movies-db/movies";
 import { useEffect, useState } from "react";
-import { FlatList, Text } from "react-native";
+import { ActivityIndicator, FlatList, Text } from "react-native";
 import { MovieListItem } from "./MovieListItem";
 
 export const MovieList = () => {
@@ -9,10 +9,14 @@ export const MovieList = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     async function fetchData({ page }: { page: number }) {
+        setIsLoading(true);
         return DiscoverMoviesService({ page })
             .then((data) => data)
             .catch((error) => {
 
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
@@ -34,8 +38,6 @@ export const MovieList = () => {
             page: page + 1
         });
 
-        console.log('carregando mais')
-
         if (fetchedData) {
             setData({
                 ...data,
@@ -53,6 +55,15 @@ export const MovieList = () => {
             columnWrapperClassName="flex-row justify-between"
             onEndReached={loadMore}
             keyExtractor={(item) => item.id.toString()}
+            ListFooterComponent={() => {
+                if (!isLoading) {
+                    return null;
+                }
+
+                return (
+                    <ActivityIndicator className="my-8" size="large" color="white" />
+                )
+            }}
             renderItem={({ item }) => (
                 <MovieListItem {...item} />
             )}
