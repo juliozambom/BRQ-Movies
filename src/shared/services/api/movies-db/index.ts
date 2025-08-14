@@ -4,7 +4,7 @@ import { MOVIES_DB_BASE_URL } from "../urls";
 export const moviesDbApi = axios.create({
     baseURL: MOVIES_DB_BASE_URL,
     headers: {
-        'Authorization': 'Bearer',
+        'Authorization': 'Bearer 0',
         Accept: "application/json"
     }
 });

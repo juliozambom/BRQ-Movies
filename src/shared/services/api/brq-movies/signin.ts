@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { assertUsers } from '../../lib/assertUsers';
+import { assertUsers } from '../../../lib/assertUsers';
 
 interface SignInServiceInput {
     username: string;
@@ -27,6 +27,8 @@ export const SignInService = async (input: SignInServiceInput): Promise<SignInSe
     if (!user || user.password !== input.password) {
         throw new Error('Usuário ou senha inválidos');
     }
+
+    await AsyncStorage.setItem('access-token', '@fake-token');
 
     return {
         token: '@fake-token'

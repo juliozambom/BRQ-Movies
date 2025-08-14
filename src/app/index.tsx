@@ -1,15 +1,36 @@
+import { Image, View } from "react-native";
+import splashIcon from "@/assets/images/splash-icon.webp";
+import { useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import { TouchableOpacity, Text } from "react-native";
 
 export default function Index() {
+  async function checkAuth() {
+    const token = await AsyncStorage.getItem('access-token');
+
+    if (!token) {
+      return false;
+    }
+
+    return true;
+  }
+
+  useEffect(() => {
+    (async () => {
+      const isLogged = await checkAuth();
+
+      if (!isLogged) {
+        router.push('/signin')
+        return;
+      }
+
+      router.push('/home')
+    })()
+  }, [])
+
   return (
-    <TouchableOpacity
-      onPress={() => {
-        router.push("/signin")
-      }}
-      className="items-center justify-center flex-1 bg-background px-4"
-    >
-      <Text>Hello</Text>
-    </TouchableOpacity>
+    <View className="bg-background flex-1 items-center justify-center">
+      <Image source={splashIcon} className="w-64 h-64" />
+    </View>
   )
 }

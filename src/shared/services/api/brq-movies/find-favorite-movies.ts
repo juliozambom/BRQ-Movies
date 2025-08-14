@@ -1,14 +1,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface FindFavoriteMoviesOutput {
-    id: string
+    id: number;
     overview: string
-    popularity: string
+    popularity: number;
     poster_path: string
     release_date: string
     title: string
-    vote_average: string
-    vote_count: string
+    vote_average: number;
+    vote_count: number;
 }
 
 export const FindFavoriteMoviesService = async (): Promise<FindFavoriteMoviesOutput[]> => {

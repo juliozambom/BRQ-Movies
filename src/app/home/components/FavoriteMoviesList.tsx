@@ -56,7 +56,7 @@ export const FavoriteMoviesList = () => {
             contentContainerClassName="gap-4 pb-16 px-4"
             columnWrapperClassName="flex-row justify-between"
             className="border-t-2 border-tertiary pt-4"
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
             ListFooterComponent={() => {
                 if (!isLoading) {
                     return null;

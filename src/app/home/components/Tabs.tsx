@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { MoviesList } from "./MoviesList";
-import { FavoriteMoviesList } from "./FavoriteMoviesList ";
+import { FavoriteMoviesList } from "./FavoriteMoviesList";
 
 const MyTabs = createMaterialTopTabNavigator();
 

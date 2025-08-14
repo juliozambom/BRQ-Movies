@@ -5,8 +5,8 @@ import { Profile } from "@/src/shared/assets/icons/Profile"
 import { TextField } from "@/src/shared/components/TextField"
 import { Button } from "@/src/shared/components/Button"
 import { useState } from "react"
-import { SignInService } from "@/src/shared/services/auth/signin"
 import { router } from "expo-router";
+import { SignInService } from "@/src/shared/services/api/brq-movies/signin";
 
 const SignInSchema = z.object({
     username: z.string(),
