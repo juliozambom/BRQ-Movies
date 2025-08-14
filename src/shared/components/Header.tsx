@@ -9,7 +9,8 @@ export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     async function handleSignOut() {
-        await AsyncStorage.removeItem('access-token');
+        const keys = await AsyncStorage.getAllKeys();
+        await AsyncStorage.multiRemove(keys);
 
         router.replace('/signin');
     }
