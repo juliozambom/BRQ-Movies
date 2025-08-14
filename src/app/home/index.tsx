@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";;
 import { Header } from "@/src/shared/components/Header";
-import { HomeTabs } from "./components/Tabs";
+import { HomeTabs } from "@/src/shared/components/signin/components/Tabs";
 
 export default function Home() {
     const { top } = useSafeAreaInsets();
