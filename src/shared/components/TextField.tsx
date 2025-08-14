@@ -22,7 +22,6 @@ export const TextField = ({ icon, ...rest }: TextFieldProps) => {
         textFieldRef.current?.focus()
     }
 
-    console.log(value);
     return (
         <TouchableOpacity activeOpacity={1} onPress={focusField} className={clsx("w-full relative justify-center", rest?.className)}>
             <TextInput
