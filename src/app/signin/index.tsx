@@ -1,5 +1,5 @@
 import { Image, View } from "react-native";
-import icon from "@/assets/images/splash-icon.webp";
+import icon from "@/assets/images/icon.png";
 import { SignInForm } from "./components/signin-form";
 
 export default function Index() {

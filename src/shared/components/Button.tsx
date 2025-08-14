@@ -12,8 +12,9 @@ export const Button = ({ title, isLoading, ...rest }: ButtonProps) => {
         <TouchableOpacity
             {...rest}
             disabled={rest.disabled || isLoading}
-            className={clsx("rounded-full min-h-16 bg-primary w-full items-center justify-center", {
-                'bg-foreground': rest.disabled
+            className={clsx("rounded-full min-h-16 w-full items-center justify-center", {
+                'bg-foreground': rest.disabled,
+                'bg-primary': !rest.disabled
             }, rest?.className)} >
 
             {!isLoading && <Text className="text-base text-secondary">{title}</Text>}

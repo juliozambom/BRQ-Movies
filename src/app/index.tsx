@@ -1,5 +1,5 @@
 import { Image, View } from "react-native";
-import splashIcon from "@/assets/images/splash-icon.webp";
+import icon from "@/assets/images/icon.png";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
@@ -30,7 +30,7 @@ export default function Index() {
 
   return (
     <View className="bg-background flex-1 items-center justify-center">
-      <Image source={splashIcon} className="w-64 h-64" />
+      <Image source={icon} className="w-64 h-64" />
     </View>
   )
 }

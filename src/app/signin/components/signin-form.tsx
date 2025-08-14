@@ -69,13 +69,6 @@ export const SignInForm = () => {
                 isLoading={isLoading}
                 onPress={submitForm}
             />
-
-            <TouchableOpacity
-                hitSlop={8}
-                className="mt-12"
-            >
-                <Text className="text-secondary font-medium">Esqueci a senha</Text>
-            </TouchableOpacity>
         </>
     )
 }
