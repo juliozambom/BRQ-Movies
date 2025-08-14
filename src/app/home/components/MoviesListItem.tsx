@@ -3,7 +3,18 @@ import { IMAGE_MOVIES_DB_BASE_URL } from "@/src/shared/services/api/urls"
 import { router } from "expo-router"
 import { Image, TouchableOpacity } from "react-native"
 
-export const MovieListItem = (props: DiscoverMoviesServiceOutput['results'][0]) => {
+interface MovieListItemProps {
+    id: string
+    overview: string
+    popularity: string
+    poster_path: string
+    release_date: string
+    title: string
+    vote_average: string
+    vote_count: string
+}
+
+export const MovieListItem = (props: MovieListItemProps) => {
     function onNavigateToMovie() {
         router.push({
             pathname: `/movie`,

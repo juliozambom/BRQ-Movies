@@ -1,13 +1,17 @@
-import { FlatList, ImageBackground, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Alert, DeviceEventEmitter, ImageBackground, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IMAGE_MOVIES_DB_BASE_URL } from "@/src/shared/services/api/urls";
 import { router, useLocalSearchParams } from "expo-router";
 import { Heart } from "@/src/shared/assets/icons/Heart";
 import { Star } from "@/src/shared/assets/icons/Star";
 import { Calendar } from "@/src/shared/assets/icons/Calendar";
 import { Bell } from "@/src/shared/assets/icons/Bell";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ChevronLeft } from "@/src/shared/assets/icons/ChevronLeft";
 import { HeartCircle } from "@/src/shared/assets/icons/HeartCircle";
+import { FavoriteMovieService } from "@/src/shared/services/api/brq-movies/favorite-movie";
+import { UnfavoriteMovieService } from "@/src/shared/services/api/brq-movies/unfavorite-movie";
+import { FindMovieInfoService } from "@/src/shared/services/api/brq-movies/find-movie-info";
 
 interface MovieParams {
     id: string
@@ -25,11 +29,14 @@ export default function Movie() {
     const { top } = useSafeAreaInsets();
     const params = useLocalSearchParams() as unknown as MovieParams
 
+    const [isFavorited, setIsFavorited] = useState<boolean>(false);
+    const [favoritesCount, setFavoritesCount] = useState<number>(Number(params.vote_count));
+
     const flatListItems = [
         {
             icon: Heart,
             label: 'Curtidas',
-            value: params.vote_count
+            value: favoritesCount
         },
         {
             icon: Star,
@@ -47,6 +54,56 @@ export default function Movie() {
             value: params.popularity
         }
     ]
+
+    async function onFavorite() {
+        try {
+            await FavoriteMovieService(params).then(() => {
+                setIsFavorited(true);
+                setFavoritesCount(favoritesCount + 1);
+            })
+        } catch (error) {
+            if (error instanceof Error) {
+                Alert.alert('Erro', error.message)
+                return;
+            }
+
+            Alert.alert('Erro', 'Erro interno do servidor')
+        }
+    }
+
+    async function onUnfavorite() {
+        try {
+            await UnfavoriteMovieService(params).then(() => {
+                setIsFavorited(false);
+                setFavoritesCount(favoritesCount - 1);
+            })
+        } catch (error) {
+            if (error instanceof Error) {
+                Alert.alert('Erro', error.message)
+                return;
+            }
+
+            Alert.alert('Erro', 'Erro interno do servidor')
+        }
+    }
+
+    async function handleFavorite() {
+        if (isFavorited) {
+            await onUnfavorite();
+        } else {
+            await onFavorite();
+        }
+
+        DeviceEventEmitter.emit('REFRESH-FAVORITES');
+    }
+
+    useEffect(() => {
+        FindMovieInfoService({
+            id: params.id
+        }).then(({ isFavorited }) => {
+            setIsFavorited(isFavorited);
+        })
+    }, [])
 
     return (
         <View className="flex-1">
@@ -91,9 +148,11 @@ export default function Movie() {
                 >
                     <ChevronLeft size={40} />
                 </TouchableOpacity>
-                <View>
-                    <HeartCircle size={40} />
-                </View>
+                <TouchableOpacity
+                    onPress={handleFavorite}
+                >
+                    <HeartCircle size={40} color={isFavorited ? '#EC8B00' : '#16171B'} fill={isFavorited ? '#16171B' : '#fff'} />
+                </TouchableOpacity>
             </View>
         </View>
     )

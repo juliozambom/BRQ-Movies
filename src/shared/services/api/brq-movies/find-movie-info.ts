@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface FindMovieInfoInput {
-    id: number;
+    id: string;
 }
 
 interface FindMovieInfoOutput {
@@ -15,9 +15,13 @@ export const FindMovieInfoService = async (input: FindMovieInfoInput): Promise<F
         favorited = '[]';
     }
 
-    const favorites = JSON.parse(favorited) as number[];
+    const favorites = JSON.parse(favorited) as {
+        id: string
+    }[];
 
-    const isFavorited = favorites.includes(input.id);
+    console.log(favorites);
+
+    const isFavorited = !!favorites.find((movie) => movie.id === input.id);
 
     return {
         isFavorited

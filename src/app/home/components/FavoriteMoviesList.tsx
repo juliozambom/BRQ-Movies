@@ -1,19 +1,18 @@
-import { DiscoverMoviesService, DiscoverMoviesServiceOutput } from "@/src/shared/services/api/movies-db/movies";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text } from "react-native";
+import { ActivityIndicator, Alert, DeviceEventEmitter, FlatList, Text } from "react-native";
 import { MovieListItem } from "./MoviesListItem";
+import { FindFavoriteMoviesOutput, FindFavoriteMoviesService } from "@/src/shared/services/api/brq-movies/find-favorite-movies";
 
 export const FavoriteMoviesList = () => {
-    const [data, setData] = useState<DiscoverMoviesServiceOutput | null>(null);
-    const [page, setPage] = useState<number>(1);
+    const [data, setData] = useState<FindFavoriteMoviesOutput[] | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    async function fetchData({ page }: { page: number }) {
+    async function fetchData() {
         setIsLoading(true);
-        return DiscoverMoviesService({ page })
+        return FindFavoriteMoviesService()
             .then((data) => data)
-            .catch((error) => {
-
+            .catch(() => {
+                Alert.alert('Erro', 'Erro ao buscar os filmes favoritos')
             })
             .finally(() => {
                 setIsLoading(false);
@@ -21,41 +20,43 @@ export const FavoriteMoviesList = () => {
     }
 
     useEffect(() => {
-        fetchData({ page }).then((data) => {
+        fetchData().then((data) => {
             if (data) {
                 setData(data);
             }
         })
+
+        DeviceEventEmitter.addListener('REFRESH-FAVORITES', () => {
+            console.log('REFRESH-FAVORITES');
+            fetchData().then((data) => {
+                if (data) {
+                    setData(data);
+                }
+            })
+        })
+
+        return () => {
+            DeviceEventEmitter.removeAllListeners('REFRESH-FAVORITES');
+        }
     }, []);
 
-    async function loadMore() {
-        if (!data || isLoading) {
-            return;
-        }
-
-        setPage(page + 1);
-        const fetchedData = await fetchData({
-            page: page + 1
-        });
-
-        if (fetchedData) {
-            setData({
-                ...data,
-                results: [...data.results, ...fetchedData.results]
-            })
-        }
+    if (data && data.length == 0) {
+        return (
+            <Text className="text-secondary text-center text-xl font-bold mt-8">
+                Você não possui filmes favoritos
+            </Text>
+        )
     }
 
     return (
         <FlatList
-            data={data?.results}
+            data={data}
             numColumns={2}
             showsVerticalScrollIndicator={false}
             contentContainerClassName="gap-4 pb-16 px-4"
             columnWrapperClassName="flex-row justify-between"
             className="border-t-2 border-tertiary pt-4"
-            onEndReached={loadMore}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.id}
             ListFooterComponent={() => {
                 if (!isLoading) {
                     return null;
