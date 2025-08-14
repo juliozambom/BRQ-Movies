@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { assertUsers } from '../../../lib/assertUsers';
+import { assertUsers } from '../../../../lib/assertUsers';
 
 interface SignInServiceInput {
     username: string;

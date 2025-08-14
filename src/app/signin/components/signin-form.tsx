@@ -6,7 +6,7 @@ import { TextField } from "@/src/shared/components/TextField"
 import { Button } from "@/src/shared/components/Button"
 import { useState } from "react"
 import { router } from "expo-router";
-import { SignInService } from "@/src/shared/services/api/brq-movies/signin";
+import { SignInService } from "@/src/shared/services/api/brq/auth/signin";
 
 const SignInSchema = z.object({
     username: z.string(),

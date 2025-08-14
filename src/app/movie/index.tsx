@@ -9,9 +9,9 @@ import { Calendar } from "@/src/shared/assets/icons/Calendar";
 import { Bell } from "@/src/shared/assets/icons/Bell";
 import { ChevronLeft } from "@/src/shared/assets/icons/ChevronLeft";
 import { HeartCircle } from "@/src/shared/assets/icons/HeartCircle";
-import { FavoriteMovieService } from "@/src/shared/services/api/brq-movies/favorite-movie";
-import { UnfavoriteMovieService } from "@/src/shared/services/api/brq-movies/unfavorite-movie";
-import { FindMovieInfoService } from "@/src/shared/services/api/brq-movies/find-movie-info";
+import { FavoriteMovieService } from "@/src/shared/services/api/brq/movies/favorite-movie";
+import { UnfavoriteMovieService } from "@/src/shared/services/api/brq/movies/unfavorite-movie";
+import { FindMovieInfoService } from "@/src/shared/services/api/brq/movies/find-movie-info";
 
 interface MovieParams {
     id: string

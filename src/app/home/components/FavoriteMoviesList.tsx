@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, DeviceEventEmitter, FlatList, Text } from "react-native";
 import { MovieListItem } from "./MoviesListItem";
-import { FindFavoriteMoviesOutput, FindFavoriteMoviesService } from "@/src/shared/services/api/brq-movies/find-favorite-movies";
+import { FindFavoriteMoviesOutput, FindFavoriteMoviesService } from "@/src/shared/services/api/brq/movies/find-favorite-movies";
 
 export const FavoriteMoviesList = () => {
     const [data, setData] = useState<FindFavoriteMoviesOutput[] | null>(null);
