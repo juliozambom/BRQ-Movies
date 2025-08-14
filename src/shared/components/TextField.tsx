@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import clsx from "clsx";
-import { Text, TextInput, TextInputProps, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Platform, Text, TextInput, TextInputProps, TouchableOpacity, View } from "react-native";
 import { TrailingIcon } from "../assets/icons/TrailingIcon";
 
 interface TextFieldProps extends TextInputProps {
@@ -34,7 +34,8 @@ export const TextField = ({ icon, ...rest }: TextFieldProps) => {
                 {...rest}
                 placeholder={undefined}
                 className={clsx("border-b text-base border-secondary px-4 leading-tight min-h-16 pt-2 bg-tertiary text-secondary", {
-                    'pl-14': !!icon
+                    'pl-14': !!icon,
+                    'pt-6': Platform.OS == 'android'
                 })}
             />
 
