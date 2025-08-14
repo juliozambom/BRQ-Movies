@@ -51,7 +51,7 @@ export default function Movie() {
         {
             icon: Bell,
             label: 'Popularidade',
-            value: params.popularity
+            value: params.popularity.split('.')[0] + '°'
         }
     ]
 
