@@ -1,12 +1,12 @@
-import { Alert, Text, TouchableOpacity } from "react-native"
-import z from "zod";
-import { Lock } from "@/src/shared/assets/icons/Lock"
-import { Profile } from "@/src/shared/assets/icons/Profile"
-import { TextField } from "@/src/shared/components/TextField"
-import { Button } from "@/src/shared/components/Button"
-import { useState } from "react"
-import { router } from "expo-router";
+import { Lock } from "@/src/shared/assets/icons/Lock";
+import { Profile } from "@/src/shared/assets/icons/Profile";
+import { Button } from "@/src/shared/components/Button";
+import { TextField } from "@/src/shared/components/TextField";
 import { SignInService } from "@/src/shared/services/api/brq/auth/signin";
+import { router } from "expo-router";
+import { useState } from "react";
+import { Alert, KeyboardAvoidingView } from "react-native";
+import z from "zod";
 
 const SignInSchema = z.object({
     username: z.string(),
@@ -44,7 +44,7 @@ export const SignInForm = () => {
     }
 
     return (
-        <>
+        <KeyboardAvoidingView behavior="padding" className="w-full">
             <TextField
                 icon={<Profile size={20} />}
                 placeholder="Usuário"
@@ -69,6 +69,6 @@ export const SignInForm = () => {
                 isLoading={isLoading}
                 onPress={submitForm}
             />
-        </>
+        </KeyboardAvoidingView>
     )
 }

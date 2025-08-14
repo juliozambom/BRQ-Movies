@@ -1,8 +1,8 @@
 import { Text, View } from "react-native"
+import { Bell } from "../../assets/icons/Bell"
+import { Calendar } from "../../assets/icons/Calendar"
 import { Heart } from "../../assets/icons/Heart"
 import { Star } from "../../assets/icons/Star"
-import { Calendar } from "../../assets/icons/Calendar"
-import { Bell } from "../../assets/icons/Bell"
 
 interface MovieMetricsProps {
     favoritesCount: number
@@ -45,10 +45,10 @@ export const MovieMetrics = ({
             {flatListItems.map(({ icon: Icon, ...item }, index) => (
                 <View key={index} className="flex-col w-[48%] gap-3 justify-between bg-tertiary p-4 rounded-lg">
                     <View className="flex-row items-center gap-2">
-                        <View className="bg-background h-9 w-9 rounded-full items-center justify-center">
-                            <Icon size={20} />
+                        <View className="bg-background h-8 w-8 rounded-full items-center justify-center">
+                            <Icon size={18} />
                         </View>
-                        <Text className="text-primary font-bold text-lg">{item.label.toUpperCase()}</Text>
+                        <Text className="text-primary font-bold text-md">{item.label.toUpperCase()}</Text>
                     </View>
                     <Text className="text-secondary font-bold text-2xl">{item.value}</Text>
                 </View>
