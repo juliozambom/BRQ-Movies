@@ -19,8 +19,6 @@ export const FindMovieInfoService = async (input: FindMovieInfoInput): Promise<F
         id: string
     }[];
 
-    console.log(favorites);
-
     const isFavorited = !!favorites.find((movie) => movie.id === input.id);
 
     return {

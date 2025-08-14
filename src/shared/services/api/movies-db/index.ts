@@ -7,4 +7,4 @@ export const moviesDbApi = axios.create({
         'Authorization': `Bearer ${process.env.EXPO_PUBLIC_MOVIES_DB_API_KEY}`,
         Accept: "application/json"
     }
-});
+}); 

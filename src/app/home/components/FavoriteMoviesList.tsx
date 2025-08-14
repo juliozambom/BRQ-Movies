@@ -27,7 +27,6 @@ export const FavoriteMoviesList = () => {
         })
 
         DeviceEventEmitter.addListener('REFRESH-FAVORITES', () => {
-            console.log('REFRESH-FAVORITES');
             fetchData().then((data) => {
                 if (data) {
                     setData(data);
